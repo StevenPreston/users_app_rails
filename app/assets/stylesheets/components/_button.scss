@@ -1,0 +1,17 @@
+.btn {
+  border: none;
+  background: none;
+}
+
+.btn:focus {
+  outline: 0;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  color: #FFF;
+  background-color: #00A0D1;
+  padding: 12px;
+  @include border-radius;
+}

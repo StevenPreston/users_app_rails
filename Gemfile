@@ -13,7 +13,7 @@ gem 'dotenv-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -21,6 +21,7 @@ gem 'dotenv-rails'
 group :development, :test do
   gem 'pry-rails'
   gem 'byebug', platform: :mri
+  gem 'simplecov'
 end
 
 group :development do
@@ -33,7 +34,11 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 3.5.0.beta3'
+  gem 'rails-controller-testing'
+  gem 'faker'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

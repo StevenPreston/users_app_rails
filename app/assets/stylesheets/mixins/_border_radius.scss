@@ -1,0 +1,8 @@
+$default-border-radius:4px !default;
+
+@mixin border-radius($radius: $default-border-radius) {
+  -webkit-border-radius:$radius;
+  -moz-border-radius:$radius;
+  -khtml-border-radius:$radius;
+  border-radius:$radius;
+}
