@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   include UsersHelper
-  before_action :find_current_user, only: [:show]
+  before_action :find_current_user, only: [:show, :new]
 
   def new
+    redirect_to @current_user if @current_user
     @user = User.new
   end
 

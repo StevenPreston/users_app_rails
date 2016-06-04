@@ -1,18 +1,27 @@
 require 'rails_helper'
 
 describe UsersController do
-  let(:user) { FactoryGirl.build(:user) }
-
   describe 'GET #new' do
+    context 'when no user is already logged in' do
+      it 'assigns new User to @user' do
+        get :new
+        expect(assigns(:user)).to be_a_new(User)
+      end
 
-    it 'assigns new User to @user' do
-      get :new
-      expect(assigns(:user)).to be_a_new(User)
+      it 'renders new' do
+        get :new
+        expect(response).to render_template(:new)
+      end
     end
 
-    it 'renders new' do
-      get :new
-      expect(response).to render_template(:new)
+    context 'when a user is already logged in' do
+      include UsersHelper
+      let(:user) { FactoryGirl.create(:user) }
+      it 'redirects to the current user' do
+        log_in user
+        get :new
+        expect(response).to redirect_to user_url(user)
+      end
     end
   end
 
@@ -21,7 +30,7 @@ describe UsersController do
       let(:valid_params) {
         {
           user: {
-            email: user.email, password: user.password
+            email: 'test@example.com', password: 'password'
           } 
         }
       }
@@ -45,7 +54,7 @@ describe UsersController do
       let(:invalid_params) {
         {
           user: {
-            email: user.email
+            email: 'test@example.com'
           } 
         }
       }
