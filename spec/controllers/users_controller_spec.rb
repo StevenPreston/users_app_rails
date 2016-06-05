@@ -15,7 +15,7 @@ describe UsersController do
     end
 
     context 'when a user is already logged in' do
-      include UsersHelper
+      include SessionsHelper
       let(:user) { FactoryGirl.create(:user) }
       it 'redirects to the current user' do
         log_in user

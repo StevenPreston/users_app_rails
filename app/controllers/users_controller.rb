@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
-  include UsersHelper
-  before_action :find_current_user, only: [:show, :new]
-
+  before_action :logged_in_user, only: :new
+  
   def new
-    redirect_to @current_user if @current_user
     @user = User.new
   end
 
@@ -20,16 +18,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if @current_user.id != @user.id
-      redirect_to :new
-    end
+    redirect_to new_session_url unless current_user?(@user)
   end
 
   private
-
-  def find_current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
