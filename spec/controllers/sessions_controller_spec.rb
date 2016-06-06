@@ -88,4 +88,25 @@ describe SessionsController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    include SessionsHelper
+    let(:user) { FactoryGirl.create(:user) }
+    before { log_in user }
+
+    it 'redirects to new' do
+      delete :destroy
+      expect(response).to redirect_to new_session_url
+    end
+
+    it 'clears the session ID' do
+      delete :destroy
+      expect(session[:user_id]).to be_nil
+    end
+
+    it 'clears the current user' do
+      delete :destroy
+      expect(current_user).to be_nil
+    end
+  end
 end
