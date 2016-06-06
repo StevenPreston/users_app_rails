@@ -1,3 +1,19 @@
-<h1>User</h1>
-
-<%= link_to 'Log out', session_url, method: :delete %>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-8 col-md-offset-2'>
+      <h1>Your Profile</h1>
+      <%= form_for(@user) do |f| %>
+        <div class='input-group'>
+          <%= f.text_field :first_name, placeholder: 'First Name' %>
+        </div>
+        <div class='input-group'>
+          <%= f.text_field :last_name, placeholder: 'Last Name' %>
+        </div>
+        <div class='input-group'>
+          <%= f.email_field :email, placeholder: 'Email' %>
+        </div>
+      <% end %>
+      <%= link_to 'Log out', session_url, method: :delete %>
+    </div>
+  </div>
+</div>

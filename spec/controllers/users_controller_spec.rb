@@ -69,4 +69,32 @@ describe UsersController do
       end
     end
   end
+
+  describe 'GET #show' do
+    let(:user) { FactoryGirl.create(:user) }
+
+    context 'when a user is logged in' do
+      include SessionsHelper
+
+      before do
+        log_in user
+        get :show, params: { id: user.id }
+      end
+
+      it 'renders show' do
+        expect(response).to render_template :show
+      end
+
+      it 'assigns user to @user' do
+        expect(assigns(:user).id).to equal(user.id)
+      end
+    end
+
+    context 'when no user is logged in' do
+      it 'redirects to sessions#new' do
+        get :show, params: { id: user.id }
+        expect(response).to redirect_to new_session_url
+      end
+    end
+  end
 end
