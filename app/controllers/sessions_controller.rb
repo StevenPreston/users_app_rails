@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
        log_in user
        redirect_to user
     else
-      flash[:error] = 'Unknown user or incorrect username and password'
-      render 'new'
+      flash.now[:error] = 'Unknown user or incorrect username and password'
+      render :new
     end
   end
 

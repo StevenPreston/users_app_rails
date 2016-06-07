@@ -1,0 +1,6 @@
+.alert {
+  padding: 15px;
+  background-color: #CF8484;
+  border: 1px solid #943D3D;
+  @include border-radius;
+}
