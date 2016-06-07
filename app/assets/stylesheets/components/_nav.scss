@@ -1,0 +1,28 @@
+nav {
+  position: relative;
+  display: block;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+
+  .nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    >li {
+      float: left;
+      position: relative;
+      display: block;
+
+      >a {
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+      }
+    }
+
+    >li+li {
+      margin-left: 2px;
+    }
+  }
+}
