@@ -1,8 +1,9 @@
 <nav class='clearfix'>
   <ul class='nav pull-right'>
     <% if logged_in? %>
-      <li><%= link_to 'Profile', user_url %></li></li>
-      <li><%= link_to 'Log out', session_url, method: :delete %></li>
+      <li><%= link_to 'Places', user_places_url(current_user) %></li></li>
+      <li><%= link_to 'Profile', current_user %></li></li>
+      <li><%= link_to 'Log out', logout_url, method: :delete %></li>
     <% else %>
       <li><%= link_to 'Register', new_user_url %></li>
       <li><%= link_to 'Log in', new_session_url %></li>
