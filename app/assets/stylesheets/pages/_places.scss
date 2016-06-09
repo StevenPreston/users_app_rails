@@ -1,0 +1,19 @@
+.add-places {
+  .add-place-place-field {
+    display: block;
+    width: calc(100% - 270px);
+  }
+
+  .add-place-date-field {
+    width: 160px;
+    float: right;
+  }
+
+  .add-place-btn {
+    width: 90px;
+    height: 44px;
+    float: right;
+    margin-left: 10px;
+  }
+}
+

@@ -1,0 +1,12 @@
+<%= form_tag user_places_path, method: :post do %>
+  <div class='hidden'>
+    <%= text_field :place, :name %>
+    <%= text_field :place, :formatted_address %>
+  </div>
+
+  <div class='input-group add-places'>
+    <%= submit_tag "Add Place", class: 'btn add-place-btn'  %>
+    <%= date_field_tag :date, nil, class: 'add-place-date-field' %>
+    <%= text_field_tag :place_location, nil, placeholder: 'Place', class: 'add-place-place-field' %>  
+  </div>
+<% end %>
