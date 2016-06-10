@@ -6,7 +6,7 @@
 
   <div class='input-group add-places'>
     <%= submit_tag "Add Place", class: 'btn add-place-btn'  %>
-    <%= date_field_tag :date, nil, class: 'add-place-date-field' %>
+    <%= date_field_tag :date, nil, class: 'add-place-date-field hidden' %>
     <%= text_field_tag :place_location, nil, placeholder: 'Place', class: 'add-place-place-field' %>  
   </div>
 <% end %>
