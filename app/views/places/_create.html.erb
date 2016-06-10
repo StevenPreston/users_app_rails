@@ -1,7 +1,9 @@
-<%= form_tag user_places_path, method: :post do %>
-  <div class='hidden'>
+<%= form_tag user_places_path, method: :post, id: 'add-place-form' do %>
+  <div class=''>
     <%= text_field :place, :name %>
     <%= text_field :place, :formatted_address %>
+    <%= text_field :place, :lat %>
+    <%= text_field :place, :lng %>
   </div>
 
   <div class='input-group add-places'>

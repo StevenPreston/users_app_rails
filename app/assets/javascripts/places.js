@@ -7,13 +7,20 @@ var pageLoad = function () {
     var name = place.name;
     var utc_offset = place.utc_offset;
     var formatted_address = place.formatted_address;
-
+    var lng = place.geometry.location.lng();
+    var lat = place.geometry.location.lat();
 
     var nameField = document.getElementById('place_name');
     nameField.value = name;
 
     var addressField = document.getElementById('place_formatted_address');
     addressField.value = formatted_address;
+
+    var latField = document.getElementById('place_lat');
+    latField.value = lat;
+
+    var lngField = document.getElementById('place_lng');
+    lngField.value = lng;
   });
 }
 

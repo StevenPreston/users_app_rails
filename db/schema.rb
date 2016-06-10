@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607224121) do
+ActiveRecord::Schema.define(version: 20160610014734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "places", force: :cascade do |t|
-    t.text     "name"
+    t.text     "name",                                       null: false
     t.integer  "utc_offset"
-    t.decimal  "longitude",         precision: 10, scale: 6
-    t.decimal  "latitiude",         precision: 10, scale: 6
+    t.decimal  "lng",               precision: 10, scale: 6
+    t.decimal  "lat",               precision: 10, scale: 6
     t.text     "formatted_address"
     t.integer  "user_id"
     t.datetime "created_at",                                 null: false
