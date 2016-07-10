@@ -1,0 +1,6 @@
+<% if @result %>
+  $("<%= escape_javascript(render @place) %>").appendTo("#places");
+<% else %>
+  // Show an error here
+<% end %>
+

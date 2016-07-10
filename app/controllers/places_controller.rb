@@ -9,9 +9,20 @@ class PlacesController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @place = @user.places.build(place_params)
-    @place.save
 
-    redirect_to user_places_url
+    respond_to do |format|
+      @result = @place.save
+      if @result
+        format.js {}
+        format.html { redirect_to user_places_url }
+      else 
+        format.js {}
+        format.html do
+          flash.now[:error] = @place.errors.full_messages.to_sentence
+          redirect_to user_places_url
+        end
+      end
+    end
   end
 
   private

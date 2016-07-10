@@ -1,5 +1,5 @@
-<%= form_tag user_places_path, method: :post, id: 'add-place-form' do %>
-  <div class=''>
+<%= form_tag user_places_path, method: :post, remote: true, id: 'add-place-form' do %>
+  <div class='hidden'>
     <%= text_field :place, :name %>
     <%= text_field :place, :formatted_address %>
     <%= text_field :place, :lat %>
@@ -7,7 +7,7 @@
   </div>
 
   <div class='input-group add-places'>
-    <%= submit_tag "Add Place", class: 'btn add-place-btn'  %>
+    <%= submit_tag "Add Place", class: 'hidden'  %>
     <%= date_field_tag :date, nil, class: 'add-place-date-field hidden' %>
     <%= text_field_tag :place_location, nil, placeholder: 'Place', class: 'add-place-place-field' %>  
   </div>

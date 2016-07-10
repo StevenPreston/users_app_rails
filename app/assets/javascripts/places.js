@@ -10,17 +10,33 @@ var pageLoad = function () {
     var lng = place.geometry.location.lng();
     var lat = place.geometry.location.lat();
 
-    var nameField = document.getElementById('place_name');
-    nameField.value = name;
+    $('#place_name').val(name);
+    $('#place_formatted_address').val(formatted_address);
+    $('#place_lat').val(lat);
+    $('#place_lng').val(lng);
 
-    var addressField = document.getElementById('place_formatted_address');
-    addressField.value = formatted_address;
+    $('#place_location').val('');
+    $('#add-place-form').submit();
+  });
 
-    var latField = document.getElementById('place_lat');
-    latField.value = lat;
+  $('#add-place-form').submit(function() {
+    var name = $('#place_name').value;
+    if (name) {
+      var nameLength = $('#place_name')[0].value.trim().length;
 
-    var lngField = document.getElementById('place_lng');
-    lngField.value = lng;
+      if (nameLength == 0) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  });
+
+  $('#place_location').keyup(function() {
+    $('#place_name').val('');
+    $('#place_formatted_address').val('');
+    $('#place_lat').val('');
+    $('#place_lng').val('');
   });
 }
 
