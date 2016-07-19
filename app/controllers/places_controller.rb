@@ -2,8 +2,29 @@ class PlacesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    redirect_to new_session_url unless current_user?(@user)
-    @places = @user.places
+
+    byebug;
+
+    if current_user?(@user)
+      @places = @user.places
+      respond_to do |format|
+        format.html do
+          render component: 'Root', props: { token: cookies[:_users_app_session] }, tag: 'div', class: 'todo'
+        end
+        format.json do
+          render json: @places
+        end
+      end
+    else
+      respond_to do |format|
+        format.html do
+          redirect_to new_session_url
+        end
+        format.json do
+          render json: {}, status: 401
+        end
+      end
+    end
   end
 
   def create

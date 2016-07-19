@@ -24,7 +24,7 @@ var pageLoad = function () {
     if (name) {
       var nameLength = $('#place_name')[0].value.trim().length;
 
-      if (nameLength == 0) {
+      if (nameLength === 0) {
         return false;
       } else {
         return true;
