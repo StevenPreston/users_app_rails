@@ -19,7 +19,7 @@ function requestPlaces() {
 function receivePlaces(json) {
   return {
     type: RECEIVE_PLACES,
-    places: json.data.children.map(child => child.data),
+    places: json.data ? json.data.children.map(child => child.data) : [],
     receivedAt: Date.now()
   }
 }
@@ -28,9 +28,9 @@ function fetchPlaces() {
   return dispatch => {
     dispatch(requestPlaces())
 
-    var request = new Request('/users/1/places.json', {
+    var request = new Request('/users/2/places.json', {
       headers: new Headers({
-        'Set-Cookie': '_users_app_session=NFo3dFdMOHEwNnpUbHFibFhNS1M5bHNtNnBsM1F1ZEsxR2VUT3ExRUJZL2lqL3hvemFOY2x3U0pWY1U4VHNaVWd1dCtXY3VKOTMrdTFIUXdvdXppSksyU21zZm13VytoRXJlMXRwZms1ZUVQV01Lb2xMenJwclhaWE5ac0tBcTQvQlNEd05YdWhiOTA4Y0Z3NkE4QkdlQ3JmZEN6ZmlGQVAxZ3c1S0NJVjg0PS0tSmNGczZSZE5YQkNaeUlNNGpMRmsvQT09'
+        'Authorization': 'Authorization: ' + getToken()
       })
     });
 
@@ -56,4 +56,19 @@ export function fetchPlacesIfNeeded() {
       return dispatch(fetchPlaces())
     }
   }
+}
+
+function getToken() {
+  var name = '_app4_token' + '=';
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) === 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return '';
 }
